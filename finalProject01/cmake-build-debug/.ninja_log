@@ -1,4 +1,8 @@
 # ninja log v6
-22	154	7514334582295327	CMakeFiles/finalProject01.dir/main.c.obj	f0391508b4ea115
 156	314	7514334583634237	finalProject01.exe	3f803a7763965d8a
+22	154	7514334582295327	CMakeFiles/finalProject01.dir/main.c.obj	f0391508b4ea115
 8	501	7514333378682978	CMakeFiles/finalProject01.dir/funcoes.c.obj	b74db3a530bae352
+24	469	7514349233359056	build.ninja	df88299387a1f1b3
+50	274	7514349235549178	CMakeFiles/finalProject01.dir/main.c.obj	f0391508b4ea115
+58	299	7514349235629168	CMakeFiles/finalProject01.dir/funcoes.c.obj	b74db3a530bae352
+299	546	7514349238047837	finalProject01.exe	3f803a7763965d8a
