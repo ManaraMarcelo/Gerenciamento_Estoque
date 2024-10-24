@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 #define MAX_PRODUTOS 100  // Define o número máximo de produtos no estoque
 #define TAMANHO_NOME 50   // Define o tamanho máximo do nome do produto
