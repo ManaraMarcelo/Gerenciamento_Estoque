@@ -1,5 +1,8 @@
 #include <stdio.h>
+<<<<<<< HEAD
 #include "funcoes.h"
+=======
+>>>>>>> teste
 
 int ler_inteiro();
 float ler_float();

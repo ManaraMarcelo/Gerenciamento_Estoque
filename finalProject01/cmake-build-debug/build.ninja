@@ -54,12 +54,15 @@ build CMakeFiles/finalProject01.dir/main.c.obj: C_COMPILER__finalProject01_unsca
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\finalProject01.dir
   OBJECT_FILE_DIR = CMakeFiles\finalProject01.dir
+<<<<<<< HEAD
 
 build CMakeFiles/finalProject01.dir/funcoes.c.obj: C_COMPILER__finalProject01_unscanned_Debug H$:/ACADEMIC/CODES/C/Gerenciamento_Estoque_C/finalProject01/funcoes.c || cmake_object_order_depends_target_finalProject01
   DEP_FILE = CMakeFiles\finalProject01.dir\funcoes.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\finalProject01.dir
   OBJECT_FILE_DIR = CMakeFiles\finalProject01.dir
+=======
+>>>>>>> teste
 
 
 # =============================================================================
