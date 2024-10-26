@@ -20,8 +20,8 @@ int ler_inteiro();
 float ler_float();
 void adicionar_produto(Produto *produtos, int *total_produtos);
 void listar_produtos(Produto *produtos, int total_produtos);
+void editar_produto(Produto *produtos, int total_produtos);
 void salvar_estoque(Produto *produtos, int total_produtos);
 void carregar_estoque(Produto *produtos, int *total_produtos);
-
 
 #endif //FUNCOES_H

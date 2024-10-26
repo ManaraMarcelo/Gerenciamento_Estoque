@@ -2,6 +2,7 @@
 // Created by Manara on 23/10/2024.
 //
 
+#include <stdio.h>
 #include "funcoes.h"
 
 // Função para ler um número inteiro do usuário, garantindo entrada válida
@@ -11,7 +12,7 @@ int ler_inteiro() {
         if (scanf("%d", &valor) == 1) {  // Verifica se a entrada foi um inteiro
             return valor;  // Se válido, retorna o valor
         } else {
-            printf("Entrada inválida! Por favor, insira um número inteiro: ");
+            printf("Entrada invalida! Por favor, insira um numero inteiro: ");
             while (getchar() != '\n');  // Limpa o buffer do teclado para evitar loops infinitos
         }
     }
@@ -24,7 +25,7 @@ float ler_float() {
         if (scanf("%f", &valor) == 1) {  // Verifica se a entrada foi um float válido
             return valor;  // Se válido, retorna o valor
         } else {
-            printf("Entrada inválida! Por favor, insira um número decimal: ");
+            printf("Entrada invalida! Por favor, insira um numero decimal: ");
             while (getchar() != '\n');  // Limpa o buffer do teclado
         }
     }
@@ -44,12 +45,12 @@ void adicionar_produto(Produto *produtos, int *total_produtos) {
         scanf(" %[^\n]s", novo_produto.nome);  // Lê o nome do produto até encontrar uma nova linha
 
         // Leitura do preço do produto
-        printf("Preço do produto: ");
+        printf("Preco do produto: ");
         novo_produto.preco = ler_float();  // Garante que o preço será um número decimal
 
         // Valida se o preço é positivo
         while (novo_produto.preco < 0) {
-            printf("Preço não pode ser negativo. Insira um valor positivo: ");
+            printf("Preco não pode ser negativo. Insira um valor positivo: ");
             novo_produto.preco = ler_float();  // Solicita nova entrada se o valor for inválido
         }
 
@@ -79,9 +80,52 @@ void listar_produtos(Produto *produtos, int total_produtos) {
     for (int i = 0; i < total_produtos; i++) {  // Percorre todos os produtos no estoque
         printf("ID: %d\n", produtos[i].id);
         printf("Nome: %s\n", produtos[i].nome);
-        printf("Preço: %.2f\n", produtos[i].preco);  // Exibe o preço com 2 casas decimais
+        printf("Preco: %.2f\n", produtos[i].preco);  // Exibe o preço com 2 casas decimais
         printf("Quantidade: %d\n", produtos[i].quantidade);
         printf("-----------------------------------\n");
+    }
+}
+
+// Função para editar um produto existente no estoque
+void editar_produto(Produto *produtos, int total_produtos) {
+    int id, encontrado = 0;
+    printf("Digite o ID do produto que deseja editar: ");
+    id = ler_inteiro();  // Lê o ID do produto que será editado
+
+    // Busca o produto pelo ID fornecido
+    for (int i = 0; i < total_produtos; i++) {
+        if (produtos[i].id == id) {  // Se o ID do produto corresponde ao informado
+            encontrado = 1;  // Marca que o produto foi encontrado
+            printf("Editando o produto: %s\n", produtos[i].nome);
+
+            // Leitura do novo nome do produto
+            printf("Novo nome do produto: ");
+            scanf(" %[^\n]s", produtos[i].nome);  // Atualiza o nome do produto
+
+            // Leitura do novo preço do produto
+            printf("Novo preco do produto: ");
+            produtos[i].preco = ler_float();  // Atualiza o preço do produto
+
+            // Valida se o preço é positivo
+            while (produtos[i].preco < 0) {
+                printf("Preco não pode ser negativo. Insira um valor positivo: ");
+                produtos[i].preco = ler_float();  // Solicita nova entrada se o valor for inválido
+            }
+
+            // Leitura da nova quantidade no estoque
+            printf("Nova quantidade no estoque: ");
+            produtos[i].quantidade = ler_inteiro();  // Atualiza a quantidade do produto
+
+            // Valida se a quantidade é positiva
+            while (produtos[i].quantidade < 0) {
+                printf("Quantidade não pode ser negativa. Insira um valor positivo: ");
+                produtos[i].quantidade = ler_inteiro();  // Solicita nova entrada se o valor for inválido
+            }
+            break;  // Sai do loop após editar o produto
+        }
+    }
+    if (!encontrado) {
+        printf("Produto com ID %d não encontrado.\n", id);  // Caso não encontre o produto
     }
 }
 
@@ -89,7 +133,7 @@ void listar_produtos(Produto *produtos, int total_produtos) {
 void salvar_estoque(Produto *produtos, int total_produtos) {
     FILE *arquivo = fopen("estoque.txt", "w");  // Abre o arquivo "estoque.txt" para escrita
     if (arquivo == NULL) {  // Verifica se houve erro ao abrir o arquivo
-        printf("Erro ao abrir o arquivo para gravação!\n");
+        printf("Erro ao abrir o arquivo para gravacao!\n");
         return;  // Sai da função se o arquivo não pôde ser aberto
     }
 
