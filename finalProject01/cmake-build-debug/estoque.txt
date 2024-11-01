@@ -1,3 +1,4 @@
 0 Banana 5.50 60
 1 Maracuja 6.50 30
 2 Melancia 7.85 20
+6 20 3.00 50
