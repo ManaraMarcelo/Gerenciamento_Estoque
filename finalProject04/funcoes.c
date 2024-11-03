@@ -69,37 +69,52 @@ int login(Usuario* usuarios, int numUsuarios) {
 
 // Função para cadastrar novo usuário
 void cadastrarUsuario(Usuario* usuarios, int* numUsuarios) {
-    if (*numUsuarios >= MAX_USUARIOS) {
-        printf("Limite de usuarios alcancado.\n");
-        return;
-    }
+    int codAcesso = 3030;
+    int codUsuario = 0;
 
-    char cpf[TAM_CPF], senha[TAM_SENHA];
-    printf("Digite seu CPF (11 digitos): ");
-    scanf("%s", cpf);
-    printf("Digite sua senha (8 caracteres): ");
-    scanf("%s", senha);
+    while (1) { // Loop para permitir repetição até entrada válida
+        printf("Digite seu codigo de acesso para cadastro: ");
+        scanf("%d", &codUsuario);
 
-    // Validação de dados
-    if (!validarDados(cpf, senha)) {
-        return; // Dados inválidos
-    }
+        if (codUsuario == codAcesso) {
+            if (*numUsuarios >= MAX_USUARIOS) {
+                printf("Limite de usuarios alcançado.\n");
+                return;
+            }
 
-    // Verifica se o CPF já está cadastrado
-    for (int i = 0; i < *numUsuarios; i++) {
-        if (strcmp(usuarios[i].cpf, cpf) == 0) {
-            printf("CPF ja cadastrado.\n");
-            return;
+            char cpf[TAM_CPF], senha[TAM_SENHA];
+            printf("Digite seu CPF (11 digitos): ");
+            scanf("%s", cpf);
+            printf("Digite sua senha (8 caracteres): ");
+            scanf("%s", senha);
+
+            // Validação de dados
+            if (!validarDados(cpf, senha)) {
+                printf("Dados invalidos. CPF deve ter 11 dígitos e senha 8 caracteres.\n");
+                return; // Dados inválidos
+            }
+
+            // Verifica se o CPF já está cadastrado
+            for (int i = 0; i < *numUsuarios; i++) {
+                if (strcmp(usuarios[i].cpf, cpf) == 0) {
+                    printf("CPF ja cadastrado.\n");
+                    return;
+                }
+            }
+
+            // Cadastra novo usuário
+            strcpy(usuarios[*numUsuarios].cpf, cpf);
+            strcpy(usuarios[*numUsuarios].senha, senha);
+            (*numUsuarios)++;
+            salvarUsuarios(usuarios, *numUsuarios); // Salva usuários atualizados
+            printf("Usuario cadastrado com sucesso!\n");
+            break; // Sai do loop após cadastro bem-sucedido
+        } else {
+            printf("Codigo de acesso incorreto. Tente novamente.\n"); // Mensagem se o código estiver errado
         }
     }
-
-    // Cadastra novo usuário
-    strcpy(usuarios[*numUsuarios].cpf, cpf);
-    strcpy(usuarios[*numUsuarios].senha, senha);
-    (*numUsuarios)++;
-    salvarUsuarios(usuarios, *numUsuarios); // Salva usuários atualizados
-    printf("Usuario cadastrado com sucesso!\n");
 }
+
 
 // Função principal que controla o fluxo do programa
 int controleProduto() {
