@@ -1,0 +1,3 @@
+H:/ACADEMIC/CODES/C/Gerenciamento_Estoque_C/finalProject05/cmake-build-debug/CMakeFiles/finalProject05.dir
+H:/ACADEMIC/CODES/C/Gerenciamento_Estoque_C/finalProject05/cmake-build-debug/CMakeFiles/edit_cache.dir
+H:/ACADEMIC/CODES/C/Gerenciamento_Estoque_C/finalProject05/cmake-build-debug/CMakeFiles/rebuild_cache.dir

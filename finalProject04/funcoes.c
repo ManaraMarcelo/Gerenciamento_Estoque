@@ -5,11 +5,68 @@
 #include <string.h>
 #include "funcoes.h"
 
+void copy_init(char *cpfint, char *cpfini) {
+    char *p_i = cpfint;
+    for(int i=0; i<9; i++) {
+        cpfini[i] = cpfint[i];
+    }
+}
+
+int primDigito(char *str) {
+    int cont = 10;
+    int soma = 0;
+    for(int i=0; i<9; i++) {
+        int digito = str[i] - '0';
+        soma+=(digito * cont);
+        cont--;
+    }
+    int dig = soma % 11;
+    if(dig < 2) return 0;
+    return 11 - dig;
+}
+int segDigito(char *str) {
+    int cont = 11;
+    int soma = 0;
+    for(int i=0; i<10; i++) {
+        int digito = str[i] - '0';
+        soma+=(digito * cont);
+        cont--;
+    }
+    int dig = soma % 11;
+    if(dig < 2) return 0;
+    return 11 - dig;
+}
+
+int ultimaValidacaoCPF(const char* cpf) {
+    char ini_cpf[12] = {0};
+    copy_init(cpf, ini_cpf);
+    int dig1 = primDigito(ini_cpf);
+    ini_cpf[9] = dig1 + '0';
+    int dig2 = segDigito(ini_cpf);
+    ini_cpf[10] = dig2 + '0';
+    ini_cpf[11] = '\0';
+
+    // Verifica se o CPF é válido comparando com o original
+    if (strcmp(ini_cpf, cpf) == 0) {
+        printf("CPF Validado\n");
+        return 1;
+    } else {
+        printf("CPF Invalido\n");
+        return 0;
+    }
+}
+
 // Função para validar CPF e senha
 int validarDados(const char* cpf, const char* senha) {
+    // Verificação de comprimento
     if (strlen(cpf) != 11 || strlen(senha) != 8) {
-        printf("\nCPF deve ter 11 digitos e senha 8 caracteres.\n");
-        return 0; // Dados inválidos
+        printf("\nCPF deve ter 11 dígitos e senha 8 caracteres.\n");
+        return 0;
+    }
+    // Chama a função para validar o CPF
+    if (!ultimaValidacaoCPF(cpf)) {
+        printf("CPF invalido\n");
+        return 0;
     }
     return 1; // Dados válidos
 }
@@ -42,6 +99,8 @@ void salvarUsuarios(Usuario* usuarios, int numUsuarios) {
     }
     fclose(file);
 }
+
+
 
 // Função para realizar o login
 int login(Usuario* usuarios, int numUsuarios) {
@@ -354,3 +413,4 @@ int telaLogin() {
     } while (opcao != 0);
     return 0;
 }
+
